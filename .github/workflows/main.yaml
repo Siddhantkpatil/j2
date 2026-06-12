@@ -3,7 +3,7 @@ name: Local Docker Deployment
 on:
   push:
     branches:
-      - main  # Change this if your default branch is named 'master'
+      - master  # Change this if your default branch is named 'master'
 
 jobs:
   deploy-local:
