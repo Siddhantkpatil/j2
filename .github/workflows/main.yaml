@@ -1,0 +1,17 @@
+name: Simple Build Test
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy Code into GitHub Cloud
+        uses: actions/checkout@v4
+
+      - name: Try Building Docker Image
+        run: docker build -t test-html-app .
+
