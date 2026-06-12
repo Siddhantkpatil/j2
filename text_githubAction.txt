@@ -1,0 +1,6 @@
+Command to build the image from dockerfile and current location
+> docker build -t name_of_image .
+
+> docker run -d -p 8000:80 --name c1 xyz
+
+

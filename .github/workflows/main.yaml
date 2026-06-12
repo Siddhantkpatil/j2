@@ -1,17 +1,25 @@
-name: Simple Build Test
+name: Local Docker Deployment
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main  # Change this if your default branch is named 'master'
 
 jobs:
-  test-build:
-    runs-on: ubuntu-latest
-
+  deploy-local:
+    runs-on: self-hosted  # This forces the job to execute on your local machine
     steps:
-      - name: Copy Code into GitHub Cloud
+      - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      - name: Try Building Docker Image
-        run: docker build -t test-html-app .
+      - name: Build New Docker Image
+        run: docker build -t xyz .
+
+      - name: Clean Up Existing Container
+        run: |
+          docker stop c1 || true
+          docker rm c1 || true
+
+      - name: Launch Updated Container
+        run: docker run -d -p 8000:80 --name c1 xyz
 
